@@ -3,192 +3,185 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LUMAELI | Servicios Integrales</title>
-    <!-- Iconos Oficiales -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com">
-    <link href="https://fonts.googleapis.com" rel="stylesheet">
+    <title>LUMAELI | Soluciones Técnicas</title>
+    
+    <!-- Tailwind CSS (CDN para prototipado rápido) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts: Montserrat (Títulos) & Lato (Cuerpo) -->
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+
+    <!-- Configuración de Identidad Visual -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        lumaBlue: '#1a2a3a',
+                        lumaGold: '#c5a059',
+                        lumaGrey: '#4a5568',
+                    },
+                    fontFamily: {
+                        sans: ['Lato', 'sans-serif'],
+                        heading: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
-        :root {
-            --dark: #1e272e;
-            --accent: #f39c12; /* Naranja industrial */
-            --blue: #2980b9;
-            --light: #f5f6fa;
+        /* Efectos personalizados */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
         }
-
-        body {
-            margin: 0;
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--light);
-            color: var(--dark);
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
+        .glass-card:hover {
+            border-color: #c5a059;
+            transform: translateY(-3px);
+            background: rgba(26, 42, 58, 0.9);
         }
-
-        /* Header Compacto con Imagen de Casa en Obra */
-        header {
-            height: 35vh;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                        url('https://images.unsplash.com');
+        .hero-bg {
+            background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
             background-size: cover;
             background-position: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
-
-        .logo {
-            font-family: 'Oswald', sans-serif;
-            font-size: 3.5rem;
-            letter-spacing: 4px;
-            margin: 0;
-        }
-
-        .tagline { font-weight: 400; font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; }
-
-        /* Cuerpo Principal */
-        .main-content {
-            flex: 1;
-            max-width: 900px;
-            margin: -40px auto 20px;
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            width: 90%;
-        }
-
-        .promo-bar {
-            text-align: center;
-            font-weight: bold;
-            color: var(--blue);
-            margin-bottom: 20px;
-            font-size: 0.9rem;
-        }
-
-        /* Botonera de Servicios */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-            gap: 10px;
-        }
-
-        .btn-service {
-            background: white;
-            border: 1.5px solid #eee;
-            padding: 12px 5px;
-            border-radius: 6px; /* Puntas apenas redondeadas */
-            font-size: 0.8rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: 0.2s;
-            text-transform: uppercase;
-            color: var(--dark);
-        }
-
-        .btn-service:hover {
-            border-color: var(--blue);
-            background: var(--blue);
-            color: white;
-        }
-
-        /* Métodos de Pago */
-        .payments {
-            margin-top: 25px;
-            text-align: center;
-            font-size: 0.8rem;
-            border-top: 1px solid #eee;
-            padding-top: 15px;
-        }
-        .payments i { color: var(--accent); margin-right: 5px; }
-
-        /* Footer Compacto */
-        footer {
-            background: var(--dark);
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-bottom: 15px;
-        }
-
-        .contact-links a {
-            color: white;
-            text-decoration: none;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .contact-links i { color: #25d366; font-size: 1.2rem; }
-
-        .social-media {
-            margin-top: 10px;
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-        }
-
-        .social-media a { color: white; font-size: 1.5rem; transition: 0.3s; }
-        .social-media a:hover { color: var(--accent); }
-
-        @media (max-width: 600px) {
-            .logo { font-size: 2.5rem; }
-            .services-grid { grid-template-columns: 1fr 1fr; }
         }
     </style>
 </head>
-<body>
+<body class="bg-slate-100 text-lumaBlue font-sans antialiased">
 
-    <header>
-        <h1 class="logo">LUMAELI</h1>
-        <p class="tagline">Construcción & Soluciones</p>
+    <!-- 1. HEADER FLOTANTE -->
+    <header class="fixed w-full top-0 z-50 bg-lumaBlue/95 backdrop-blur-md shadow-lg border-b border-lumaGold/30">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <!-- Logo Tipográfico -->
+            <div class="text-2xl font-heading font-bold text-white tracking-widest">
+                LUMA<span class="text-lumaGold">ELI</span>
+            </div>
+            <!-- Botón Llamar -->
+            <a href="tel:+123456789" class="bg-lumaGold hover:bg-yellow-600 text-lumaBlue font-bold py-2 px-5 rounded-sm transition duration-300 text-sm uppercase tracking-wide">
+                <i class="fas fa-phone-alt mr-2"></i> Llamar
+            </a>
+        </div>
     </header>
 
-    <div class="main-content">
-        <div class="promo-bar">
-            <i class="fas fa-check-circle"></i> PRESUPUESTOS SIN CARGO
+    <!-- 2. HERO SECTION COMPACTO (35vh) -->
+    <section class="relative h-[35vh] flex items-center justify-center hero-bg mt-14">
+        <!-- Overlay Oscuro -->
+        <div class="absolute inset-0 bg-lumaBlue/80"></div>
+        
+        <div class="relative z-10 text-center px-4">
+            <h1 class="text-3xl md:text-4xl font-heading font-bold text-white mb-2">
+                Soluciones Técnicas de <span class="text-lumaGold">Precisión</span>
+            </h1>
+            <p class="text-gray-300 text-sm md:text-base font-light tracking-wider uppercase">
+                Boutique de Construcción & Mantenimiento
+            </p>
         </div>
+    </section>
 
-        <div class="services-grid">
-            <button class="btn-service">Plomería</button>
-            <button class="btn-service">Gas</button>
-            <button class="btn-service">Electricidad</button>
-            <button class="btn-service">Albañilería</button>
-            <button class="btn-service">Techos Teja</button>
-            <button class="btn-service">Techos Chapa</button>
-            <button class="btn-service">Filtraciones</button>
-            <button class="btn-service">Durlock</button>
-            <button class="btn-service">Pintura</button>
-            <button class="btn-service">Membranas</button>
+    <!-- 3. GRILLA DE SERVICIOS (EL NÚCLEO) -->
+    <section class="py-10 bg-slate-100">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-3 md:gap-4">
+                
+                <!-- Item 1: Plomería -->
+                <div class="glass-card bg-white p-4 rounded shadow-sm flex flex-col items-center justify-center text-center cursor-pointer group">
+                    <i class="fas fa-faucet text-2xl text-lumaGrey group-hover:text-lumaGold mb-2 transition-colors"></i>
+                    <span class="text-sm font-bold text-lumaBlue">Plomería</span>
+                </div>
+
+                <!-- Item 2: Gas -->
+                <div class="glass-card bg-white p-4 rounded shadow-sm flex flex-col items-center justify-center text-center cursor-pointer group">
+                    <i class="fas fa-fire text-2xl text-lumaGrey group-hover:text-lumaGold mb-2 transition-colors"></i>
+                    <span class="text-sm font-bold text-lumaBlue">Gasista</span>
+                </div>
+
+                <!-- Item 3: Electricidad -->
+                <div class="glass-card bg-white p-4 rounded shadow-sm flex flex-col items-center justify-center text-center cursor-pointer group">
+                    <i class="fas fa-bolt text-2xl text-lumaGrey group-hover:text-lumaGold mb-2 transition-colors"></i>
+                    <span class="text-sm font-bold text-lumaBlue">Electricidad</span>
+                </div>
+
+                <!-- Item 4: Albañilería -->
+                <div class="glass-card bg-white p-4 rounded shadow-sm flex flex-col items-center justify-center text-center cursor-pointer group">
+                    <i class="fas fa-trowel text-2xl text-lumaGrey group-hover:text-lumaGold mb-2 transition-colors"></i>
+                    <span class="text-sm font-bold text-lumaBlue">Albañilería</span>
+                </div>
+
+                <!-- Item 5: Techos Teja -->
+                <div class="glass-card bg-white p-4 rounded shadow-sm flex flex-col items-center justify-center text-center cursor-pointer group">
+                    <i class="fas fa-home text-2xl text-lumaGrey group-hover:text-lumaGold mb-2 transition-colors"></i>
+                    <span class="text-sm font-bold text-lumaBlue">Techos Teja</span>
+                </div>
+
+                <!-- Item 6: Filtraciones -->
+                <div class="glass-card bg-white p-4 rounded shadow-sm flex flex-col items-center justify-center text-center cursor-pointer group">
+                    <i class="fas fa-water text-2xl text-lumaGrey group-hover:text-lumaGold mb-2 transition-colors"></i>
+                    <span class="text-sm font-bold text-lumaBlue">Filtraciones</span>
+                </div>
+
+                <!-- Item 7: Techos Chapa -->
+                <div class="glass-card bg-white p-4 rounded shadow-sm flex flex-col items-center justify-center text-center cursor-pointer group">
+                    <i class="fas fa-layer-group text-2xl text-lumaGrey group-hover:text-lumaGold mb-2 transition-colors"></i>
+                    <span class="text-sm font-bold text-lumaBlue">Techos Chapa</span>
+                </div>
+
+                <!-- Item 8: Durlock -->
+                <div class="glass-card bg-white p-4 rounded shadow-sm flex flex-col items-center justify-center text-center cursor-pointer group">
+                    <i class="fas fa-border-all text-2xl text-lumaGrey group-hover:text-lumaGold mb-2 transition-colors"></i>
+                    <span class="text-sm font-bold text-lumaBlue">Durlock</span>
+                </div>
+
+                <!-- Item 9: Pintura -->
+                <div class="glass-card bg-white p-4 rounded shadow-sm flex flex-col items-center justify-center text-center cursor-pointer group">
+                    <i class="fas fa-paint-roller text-2xl text-lumaGrey group-hover:text-lumaGold mb-2 transition-colors"></i>
+                    <span class="text-sm font-bold text-lumaBlue">Pintura</span>
+                </div>
+
+                <!-- Item 10: Membrana -->
+                <div class="glass-card bg-white p-4 rounded shadow-sm flex flex-col items-center justify-center text-center cursor-pointer group">
+                    <i class="fas fa-scroll text-2xl text-lumaGrey group-hover:text-lumaGold mb-2 transition-colors"></i>
+                    <span class="text-sm font-bold text-lumaBlue">Membrana</span>
+                </div>
+
+            </div>
         </div>
+    </section>
 
-        <div class="payments">
-            <i class="fas fa-credit-card"></i> Aceptamos <strong>Mercado Pago</strong> y <strong>Evo</strong>
+    <!-- 4. BARRA DE ACCIÓN (FOOTER) -->
+    <footer class="bg-lumaBlue text-white py-8 border-t-4 border-lumaGold">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
+            
+            <!-- Presupuestos y Pagos -->
+            <div class="text-center md:text-left">
+                <h3 class="text-xl font-heading font-bold text-lumaGold mb-2">PRESUPUESTOS SIN CARGO</h3>
+                <div class="flex items-center justify-center md:justify-start gap-3 text-gray-400 text-2xl">
+                    <i class="fas fa-money-bill-wave" title="Efectivo"></i>
+                    <i class="fas fa-credit-card" title="Tarjetas"></i>
+                    <i class="fas fa-qrcode" title="Transferencia/QR"></i>
+                </div>
+            </div>
+
+            <!-- Botones de Contacto -->
+            <div class="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+                <a href="#" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded flex items-center justify-center transition shadow-lg transform hover:scale-105">
+                    <i class="fab fa-whatsapp text-2xl mr-2"></i>
+                    <span>WhatsApp Directo</span>
+                </a>
+                <a href="#" class="bg-transparent border border-gray-500 hover:border-lumaGold hover:text-lumaGold text-gray-300 font-bold py-3 px-6 rounded flex items-center justify-center transition">
+                    <i class="fab fa-instagram text-2xl mr-2"></i>
+                    <span>Instagram</span>
+                </a>
+            </div>
         </div>
-    </div>
-
-    <footer>
-        <div class="contact-links">
-            <a href="https://wa.me"><i class="fab fa-whatsapp"></i> 11 0000-0000</a>
-            <a href="https://wa.me"><i class="fab fa-whatsapp"></i> 11 0000-0000</a>
-            <a href="tel:01100000000"><i class="fas fa-phone"></i> 4000-0000</a>
-        </div>
-
-        <div class="social-media">
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-whatsapp"></i></a>
+        
+        <div class="text-center mt-8 text-xs text-gray-500">
+            &copy; 2024 LUMAELI Servicios Técnicos.
         </div>
     </footer>
 
